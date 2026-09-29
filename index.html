@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <title>GymNow — Premium Fitness Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-bg"></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">G</span><div><b>GymNow</b><small>FITNESS SYSTEM</small></div></div>
+      <nav>
+        <button class="nav-btn active" data-page="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-btn" data-page="weight"><span>⚖</span> Weight</button>
+        <button class="nav-btn" data-page="workouts"><span>♟</span> Workouts</button>
+        <button class="nav-btn" data-page="plan"><span>▦</span> My Plan</button>
+        <button class="nav-btn" data-page="calories"><span>◉</span> Calories</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="nav-btn" data-page="profile"><span>⚙</span> Settings</button>
+        <div class="mini-tip">Consistency beats intensity.<br><strong>Keep moving.</strong></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div><span class="eyebrow">YOUR FITNESS JOURNEY</span><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions">
+          <button class="icon-btn" id="themeToggle" title="Toggle theme">☾</button>
+          <div class="avatar">S</div>
+        </div>
+      </header>
+
+      <section id="dashboard" class="page active">
+        <div class="hero-card">
+          <div><span class="eyebrow">WELCOME BACK</span><h2>Build a stronger <em>you.</em></h2><p>Track your progress, plan your workouts and stay consistent.</p><button class="primary" data-page-link="workouts">Start a Workout →</button></div>
+          <div class="hero-stat"><span>STREAK</span><strong id="dashStreak">0</strong><small>days 🔥</small></div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><span>Current Weight</span><strong id="dashWeight">—</strong><small id="dashWeightDelta">Add your first entry</small></div>
+          <div class="stat-card"><span>Weight Goal</span><strong id="dashGoal">—</strong><small id="dashGoalProgress">Set a goal</small></div>
+          <div class="stat-card"><span>Today's Calories</span><strong id="dashCalories">0</strong><small>calories logged</small></div>
+          <div class="stat-card"><span>Today's Workout</span><strong id="dashWorkout">Rest</strong><small id="dashWorkoutStatus">Plan your day</small></div>
+        </div>
+        <div class="section-head"><div><span class="eyebrow">QUICK ACCESS</span><h3>Your fitness tools</h3></div></div>
+        <div class="quick-grid">
+          <button class="feature-card" data-page-link="weight"><span class="feature-icon">⚖</span><b>Weight Progress</b><small>Track weight & goal</small></button>
+          <button class="feature-card" data-page-link="workouts"><span class="feature-icon">♟</span><b>Workout Templates</b><small>Build your routines</small></button>
+          <button class="feature-card" data-page-link="plan"><span class="feature-icon">▦</span><b>Weekly Plan</b><small>Organize training days</small></button>
+          <button class="feature-card" data-page-link="calories"><span class="feature-icon">◉</span><b>Calorie Center</b><small>Need, gained & burned</small></button>
+        </div>
+      </section>
+
+      <section id="weight" class="page">
+        <div class="page-intro"><div><span class="eyebrow">PROGRESS</span><h2>Weight Tracker</h2><p>Every measurement moves you closer to your goal.</p></div><button class="primary" id="addWeightBtn">+ Add Weight</button></div>
+        <div class="stats-grid">
+          <div class="stat-card"><span>Current</span><strong id="currentWeight">—</strong></div>
+          <div class="stat-card"><span>Starting</span><strong id="startingWeight">—</strong></div>
+          <div class="stat-card"><span>Goal</span><strong id="weightGoalCard">—</strong></div>
+          <div class="stat-card"><span>Goal Progress</span><strong id="weightProgressPct">0%</strong></div>
+        </div>
+        <div class="panel chart-panel"><div class="panel-head"><div><h3>Weight progress</h3><small id="chartSummary">Add measurements to see your progress.</small></div><select id="chartRange"><option value="all">All time</option><option value="7">7 entries</option><option value="30">30 entries</option></select></div><canvas id="weightChart" height="250"></canvas></div>
+        <div class="panel"><div class="panel-head"><h3>Goal settings</h3><button class="secondary" id="editGoalBtn">Edit goal</button></div><div class="goal-row"><div><span>Goal weight</span><strong id="goalDisplay">Not set</strong></div><div class="progress-track"><div id="goalBar" class="progress-fill"></div></div><span id="goalBarText">0%</span></div></div>
+        <div class="panel"><div class="panel-head"><h3>History</h3><small>Latest measurements</small></div><div id="weightHistory" class="history-list"></div></div>
+      </section>
+
+      <section id="workouts" class="page">
+        <div class="page-intro"><div><span class="eyebrow">TRAINING</span><h2>Workout Templates</h2><p>Create routines by muscle zone and exercise.</p></div><button class="primary" id="newTemplateBtn">+ New Template</button></div>
+        <div id="templateGrid" class="template-grid"></div>
+        <div class="panel timer-panel"><div><span class="eyebrow">RECOVERY</span><h3>Workout Timer</h3><p>Use the timer between sets or for a full workout.</p></div><div class="timer"><div id="timerDisplay">01:00</div><div class="timer-controls"><button class="secondary" id="timerMinus">−30s</button><button class="primary" id="timerStart">Start</button><button class="secondary" id="timerPlus">+30s</button><button class="secondary" id="timerReset">Reset</button></div></div></div>
+      </section>
+
+      <section id="plan" class="page">
+        <div class="page-intro"><div><span class="eyebrow">SCHEDULE</span><h2>My Gym Plan</h2><p>Assign your templates to each day.</p></div></div>
+        <div id="weekGrid" class="week-grid"></div>
+      </section>
+
+      <section id="calories" class="page">
+        <div class="page-intro"><div><span class="eyebrow">NUTRITION</span><h2>Calorie Center</h2><p>Estimate your needs and track calories in and out.</p></div></div>
+        <div class="calorie-grid">
+          <div class="panel"><div class="panel-head"><h3>Calories needed</h3><span class="pill">Estimate</span></div>
+            <div class="form-grid">
+              <label>Age<input id="age" type="number" placeholder="27"></label>
+              <label>Sex<select id="sex"><option value="male">Male</option><option value="female">Female</option></select></label>
+              <label>Height (cm)<input id="height" type="number" placeholder="182"></label>
+              <label>Weight (kg)<input id="calcWeight" type="number" placeholder="115"></label>
+              <label class="wide">Activity<select id="activity"><option value="1.2">Sedentary</option><option value="1.375">Lightly active</option><option value="1.55" selected>Moderately active</option><option value="1.725">Very active</option><option value="1.9">Extra active</option></select></label>
+            </div>
+            <button class="primary full" id="calcCaloriesBtn">Calculate</button>
+            <div class="result-box"><span>Estimated daily calories</span><strong id="calorieNeed">—</strong></div>
+          </div>
+          <div class="panel"><div class="panel-head"><h3>Today's intake</h3><span class="pill">Calories gained</span></div>
+            <div class="intake-big"><strong id="intakeTotal">0</strong><span>kcal</span></div>
+            <div class="macro-row"><span>Protein <b id="proteinTotal">0g</b></span><span>Carbs <b id="carbsTotal">0g</b></span><span>Fat <b id="fatTotal">0g</b></span></div>
+            <button class="secondary full" id="addFoodBtn">+ Add food</button>
+          </div>
+          <div class="panel"><div class="panel-head"><h3>Calories burned</h3><span class="pill">Activity</span></div>
+            <div class="burn-form"><input id="burnName" placeholder="Activity e.g. Running"><input id="burnCalories" type="number" placeholder="Calories burned"><button class="secondary" id="addBurnBtn">Add</button></div>
+            <div id="burnList" class="simple-list"></div>
+            <div class="burn-total">Total burned <strong id="burnTotal">0 kcal</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" class="page">
+        <div class="page-intro"><div><span class="eyebrow">PREFERENCES</span><h2>Settings</h2><p>Customize your GymNow experience.</p></div></div>
+        <div class="panel settings-list">
+          <div class="setting"><div><b>Appearance</b><small>Switch between light and dark mode.</small></div><button class="secondary" id="themeToggle2">Toggle theme</button></div>
+          <div class="setting"><div><b>Weight unit</b><small>Choose the unit used for tracking.</small></div><select id="unitSelect"><option value="kg">Kilograms (KG)</option><option value="lb">Pounds (LB)</option></select></div>
+          <div class="setting"><div><b>Reset app data</b><small>Remove locally stored GymNow data.</small></div><button class="danger" id="resetData">Reset</button></div>
+        </div>
+      </section>
+
+      <footer>GymNow • Your progress. Your plan. Your strength.</footer>
+    </main>
+  </div>
+
+  <div class="modal" id="modal"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div id="modalContent"></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
